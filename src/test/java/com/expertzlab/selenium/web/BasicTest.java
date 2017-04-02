@@ -1,9 +1,6 @@
 package com.expertzlab.selenium.web;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -22,7 +19,9 @@ public class BasicTest {
         WebDriver driver = new FirefoxDriver();
         driver.get("http://www.google.com");
 
-        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+        //((JavascriptExecutor) driver).executeScript("alert('Hello');");
+        driver.manage().timeouts().setScriptTimeout(50,TimeUnit.SECONDS);
+        ((JavascriptExecutor) driver).executeScript("window.onload = function() {alert('Hello')}");
         WebElement searchField = driver.findElement(By.name("q"));
         searchField.clear();
         searchField.sendKeys(searchString);
@@ -30,7 +29,7 @@ public class BasicTest {
         System.out.println("Page title is: " + driver.getTitle());
         searchField.submit();
 
-        (new WebDriverWait(driver,60)).until(
+        (new WebDriverWait(driver,120)).until(
                 new ExpectedCondition<Boolean>() {
                     public Boolean apply(WebDriver driverObject){
                         return driverObject.getTitle().toLowerCase()
