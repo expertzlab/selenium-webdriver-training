@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by gireesh on 03-04-2017.
  */
@@ -20,6 +22,7 @@ public class BasicTest {
         WebDriver driver = new FirefoxDriver();
         driver.get("http://www.google.com");
 
+        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
         WebElement searchField = driver.findElement(By.name("q"));
         searchField.clear();
         searchField.sendKeys(searchString);
