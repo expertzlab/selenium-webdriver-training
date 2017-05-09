@@ -21,10 +21,10 @@ public class BasicTest {
         WebElement searchField = driver.findElement(By.name("q"));
         searchField.clear();
         searchField.sendKeys(searchString);
-
-        System.out.println("Page title is: " + driver.getTitle());
         searchField.submit();
+        System.out.println("First Page title is: " + driver.getTitle());
 
+        /*
         (new WebDriverWait(driver,60)).until(
                 new ExpectedCondition<Boolean>() {
                     public Boolean apply(WebDriver driverObject){
@@ -33,12 +33,18 @@ public class BasicTest {
                     }
                 }
         );
-        System.out.println("Page title is: " +driver.getTitle());
+        */
+        try{
+        Thread.sleep(5000);}
+        catch (Exception e)
+        {}
+
+        System.out.println("Second Page title is: " +driver.getTitle());
         driver.quit();
     }
 
     @Test
     public void gogleCheeseExample(){
-        googleExampleThatSearchesFor("Cheese!");
+        googleExampleThatSearchesFor("kochi spring training!");
     }
 }

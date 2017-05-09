@@ -1,14 +1,13 @@
 package com.expertzlab.selenium.web;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -28,8 +27,23 @@ public class PageLoadTimeoutEx {
         System.out.println("Page title is: " + driver.getTitle());
         searchField.submit();
 
-        driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
+        /*
+        driver.manage().addCookie(new Cookie("session","abcd123"));
+
+        Set<Cookie> cookieSet = driver.manage().getCookies();
+
+        for(Cookie ck : cookieSet){
+            System.out.println("Cookie Name -"+ ck.getName());
+            System.out.println("Cookie Value -"+ ck.getValue());
+        }
+        */
+
+        driver.manage().timeouts().setScriptTimeout(100, TimeUnit.SECONDS);
+        ((JavascriptExecutor)driver).executeAsyncScript("console.log(\"The value of this filed\")");
+
+
         //driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        System.out.println("Page title is: " + driver.getTitle());
         driver.quit();
     }
 
