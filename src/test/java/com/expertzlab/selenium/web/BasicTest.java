@@ -24,8 +24,8 @@ public class BasicTest {
         searchField.submit();
         System.out.println("First Page title is: " + driver.getTitle());
 
-        /*
-        (new WebDriverWait(driver,60)).until(
+
+        (new WebDriverWait(driver,60,100)).until(
                 new ExpectedCondition<Boolean>() {
                     public Boolean apply(WebDriver driverObject){
                         return driverObject.getTitle().toLowerCase()
@@ -33,11 +33,7 @@ public class BasicTest {
                     }
                 }
         );
-        */
-        try{
-        Thread.sleep(5000);}
-        catch (Exception e)
-        {}
+
 
         System.out.println("Second Page title is: " +driver.getTitle());
         driver.quit();
