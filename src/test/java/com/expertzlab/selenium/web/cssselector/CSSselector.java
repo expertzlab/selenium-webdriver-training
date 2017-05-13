@@ -20,8 +20,10 @@ public class CSSselector {
             WebDriver driver = new FirefoxDriver();
             driver.get("http://localhost:8082/frame.html");
 
-            WebElement divElement = driver.findElement(By.cssSelector("div#first-para"));
-
+            //WebElement divElement = driver.findElement(By.cssSelector("div#first-para"));
+            //WebElement divElement = driver.findElement(By.cssSelector("div.paragraph"));
+            //WebElement divElement = driver.findElement(By.cssSelector("div[name='header'][class='paragraph']"));
+            WebElement divElement = driver.findElement(By.cssSelector("div#content div"));
             System.out.println("The div contnet is: " + divElement.getText());
 
 
